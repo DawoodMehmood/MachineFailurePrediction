@@ -10,7 +10,6 @@ This Repository is dedicated for my Machine Learning's semester project which is
 - **Predictive Analysis**: Uses historical machine data to predict future failures.
 - **Neural Network Model**: Employs a neural network trained on past data to identify patterns indicative of impending failure.
 - **Interactive Web Interface**: A user-friendly Flask web application for easy interaction with the predictive model.
-- **Real-time Monitoring**: (If applicable) Integrates with real-time data streams for on-the-fly predictions.
 
 ## Installation & Setup
 
@@ -32,3 +31,7 @@ This Repository is dedicated for my Machine Learning's semester project which is
    ```bash
    python app.py
    ```
+
+4. **Open the app:**
+
+   Go to `http://localhost:5000` in your browser.
