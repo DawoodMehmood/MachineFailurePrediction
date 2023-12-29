@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Machine Failure Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <nav class="navbar">
+    <h1 class="navbar__title">Machine Failure & Type Prediction</h1>
+    <ul class="navbar__links">
+      <li class="navbar__item">
+        <a href="#home" class="navbar__link">Home</a>
+      </li>
+
+      <li class="navbar__item">
+        <a href="#predict" class="navbar__link">Predict</a>
+      </li>
+
+
+      <li class="navbar__item">
+        <a href="#about" class="navbar__link">About Model</a>
+      </li>
+
+
+
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <img src="{{ url_for('static', filename='images/hero-image.jpg') }}" alt="Hero Image">
+    <div class="hero-content">
+      <h1>Let's Predict Failure BeforeTime</h1>
+      <p>It has become so easy to predict machine failure and also the type of failure by simply filling in the values
+        of the parameters.</p>
+      <a href="#predict" class="cta-button">Get Started</a>
+    </div>
+  </div>
+
+
+  <div class="form-section" id="predict">
+    <h2>Predict Machine Failure & its Type</h2>
+    <form action="{{ url_for('predict')}}" method="POST">
+      <div class="form-group">
+        <label for="temperature">Air Temperature:</label>
+        <input type="number" step="0.1" id="temperature" name="temperature" placeholder="Typical value range (295-305K)"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="process_temperature">Process Temperature:</label>
+        <input type="number" step="0.1" id="process_temperature" name="process_temperature"
+          placeholder="Typical value range (305-314K)" required>
+      </div>
+      <div class="form-group">
+        <label for="torque">Torque:</label>
+        <input type="number" step="0.1" id="torque" name="torque" placeholder="Typical value range (3-77Nm)" required>
+      </div>
+      <div class="form-group">
+        <label for="tool_wear">Tool Wear:</label>
+        <input type="number" step="0.1" id="tool_wear" name="tool_wear" placeholder="Typical value range (0-253min)"
+          required>
+      </div>
+
+      <button type="submit" class="submit-button">Predict</button>
+    </form>
+
+    <div class="result-section">
+
+      <div class="failure-heading">
+        <h3>Machine Failure &raquo;</h3>
+        <span class="circle hollow-green{% if failure_prediction == 0 %} filled-green{% endif %}"></span>
+        <span class="circle hollow-red{% if failure_prediction == 1 %} filled-red{% endif %}"></span>
+      </div>
+
+
+
+
+      <div class="failure-cards">
+        <div class="card{% if failure_prediction == 1 and type_prediction == 1 %} active{% endif %}">
+          <h3>Tool Wear Failure (TWF)</h3>
+          <img src="{{ url_for('static', filename='images/tool-wear.png') }}" alt="TWF">
+        </div>
+        <div class="card{% if failure_prediction == 1 and type_prediction == 2 %} active{% endif %}">
+          <h3>Heat Dissipation Failure (HDF)</h3>
+          <img src="{{ url_for('static', filename='images/heat.png') }}" alt="HDF">
+        </div>
+        <div class="card{% if failure_prediction == 1 and type_prediction == 3 %} active{% endif %}">
+          <h3>Power Failure (PWF)</h3><br />
+          <img src="{{ url_for('static', filename='images/power.png') }}" alt="PWF">
+        </div>
+        <div class="card{% if failure_prediction == 1 and type_prediction == 4 %} active{% endif %}">
+          <h3>Overstrain Failure (OSF)</h3>
+          <img src="{{ url_for('static', filename='images/overstrain.png') }}" alt="OSF">
+        </div>
+        <div class="card{% if failure_prediction == 1 and type_prediction == 5 %} active{% endif %}">
+          <h3>Random Failure (RNF)</h3><br />
+          <img src="{{ url_for('static', filename='images/random.png') }}" alt="RNF">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="about-section" id="about">
+    <h2>About Model</h2>
+    <p>
+      Our model is designed to predict machine failure and classify the type of failure in the manufacturing industry.
+      It leverages neural network models to provide comprehensive insights into machine performance and failure
+      patterns.
+    </p>
+
+
+
+    <div class="about-card">
+      <h3>Machine Failure Prediction</h3>
+      <p>
+        The neural network model for machine failure prediction analyzes various input parameters such as temperature,
+        pressure, humidity, and vibration to accurately predict machine failure. By learning from historical data, it
+        captures complex patterns and relationships, enabling proactive maintenance, minimizing downtime, and optimizing
+        machine performance.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h3>Machine Failure Type Prediction</h3>
+      <p>
+        The neural network model for machine failure type prediction classifies the type of failure based on historical
+        data and a set of predefined failure categories. By utilizing deep learning techniques, it learns intricate
+        patterns and relationships in the data, allowing for targeted troubleshooting, swift remedial actions, and
+        efficient resource allocation.
+      </p>
+    </div>
+
+
+
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Machine Failure Prediction. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
